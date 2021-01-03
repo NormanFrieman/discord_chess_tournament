@@ -1,12 +1,12 @@
 import Discord from "discord.js";
-import HelloWorld from "./commands/HelloWorld"
+import BeforeCommand from "./middleware/BeforeCommand";
 
 function InitDiscord(): void {
     const config = require("../../config.json");
     const client = new Discord.Client();
 
     client.on("message", message => {
-        HelloWorld(message);
+        BeforeCommand(message);
     });
 
     console.log("Norman's Bot activated...");

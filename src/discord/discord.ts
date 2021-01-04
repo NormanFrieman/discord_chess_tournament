@@ -1,5 +1,5 @@
 import Discord from "discord.js";
-import BeforeCommand from "./middleware/BeforeCommand";
+import BeforeCommand from "./middlewares/BeforeCommand";
 
 function InitDiscord(): void {
     const config = require("../../config.json");

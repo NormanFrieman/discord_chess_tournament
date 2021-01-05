@@ -1,4 +1,4 @@
-import Hello from "../commands/Hello";
+import { Categories } from "./Categories";
 
 function BeforeCommand(message: any): void{
     const prefix = "!";
@@ -8,14 +8,10 @@ function BeforeCommand(message: any): void{
     if(!message.content.startsWith(prefix))
         return;
 
-    const command = message.content.slice(prefix.length).toLowerCase();
+//    const command = message.content.slice(prefix.length).toLowerCase();
 
-    if(command == "hello"){
-        if(message.channel.name != "geral")
-            return;
-
-        Hello();
-    }
+    const category = new Categories();
+    category.defineCategory(message);
 };
 
 export default BeforeCommand;

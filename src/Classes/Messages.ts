@@ -1,70 +1,32 @@
 const { MessageBuilder } = require("discord-webhook-node");
 
-export class Message{
-    title: string;
-    field: string;
-    inline: string;
-    flex: boolean;
-    color: string;
-    description: string;
-
-    constructor(
-        title: string,
-        field: string, 
-        inline: string,
-        flex: boolean, 
-        color: string, 
-        description: string
-    ){
-        this.title = title;
-        this.field = field;
-        this.inline = inline;
-        this.flex = flex;
-        this.color = color;
-        this.description = description;
-    }
-
-    createMessage(): any {
-        const embed = new MessageBuilder()
-            .setTitle(`${this.title}`)
-            .addField(`${this.field}`, `${this.inline}`, this.flex)
-            .setColor(`${this.color}`)
-            .setDescription(`${this.description}`);
-
-        return embed;
-    }
+export interface Message{
+    title?: string;
+    field?: {
+        title: string;
+        text: string;
+        inline: boolean;
+    }[];
+    color?: string;
+    description?: string;
 }
 
-export class LongMessage extends Message{
-    secondField: string;
-    secondInline: string;
-    secondFlex: boolean;
+export class Response{
+    public message: Message;
 
-    constructor(
-        title: string, 
-        field: string, 
-        inline: string, 
-        flex: boolean, 
-        color: string,
-        description: string,
-        secondField: string,
-        secondInline: string, 
-        secondFlex: boolean
-    ){
-        super(title, field, inline, flex, color, description);
-        this.secondField = secondField;
-        this.secondInline = secondInline;
-        this.secondFlex = secondFlex;
+    constructor(message: Message){
+        this.message = message;
     }
 
     createMessage(): any{
-        const embed = new MessageBuilder()
-            .setTitle(`${this.title}`)
-            .addField(`${this.field}`, `${this.inline}`, this.flex)
-            .setColor(`${this.color}`)
-            .setDescription(`${this.description}`)
-            .addField(`${this.secondField}`, `${this.secondInline}`, this.flex);
+        const embed = new MessageBuilder();
 
+        this.message.title ? embed.setTitle(`${this.message.title}`) : null;
+        this.message.color ? embed.setColor(`${this.message.color}`) : null;
+        this.message.description ? embed.setDescription(`${this.message.description}`) : null;
+        
+        this.message.field ? this.message.field.map(test => embed.addField(`${test.title}`, `${test.text}`, test.inline)) : null;
+        
         return embed;
     }
 }

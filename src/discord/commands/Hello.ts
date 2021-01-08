@@ -1,10 +1,6 @@
-const { Webhook } = require("discord-webhook-node");
-import { Message, Response } from "../../Classes/Messages";
+import { Message, Response } from "../../class/Messages";
 
-function Hello(): void{
-    const config = require("../../../config.json");
-    const hook = new Webhook(`${config.WEBHOOK}`);
-
+function Hello(hook: any): void{
 /*
     const message1: Message = {
         title: "Hello World",

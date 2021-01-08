@@ -1,6 +1,5 @@
 import { Categories } from "./Categories";
-
-function BeforeCommand(message: any): void{
+function BeforeCommand(message: any, categories: Categories): void{
     const prefix = "!";
     
     if(message.author.bot)
@@ -8,10 +7,7 @@ function BeforeCommand(message: any): void{
     if(!message.content.startsWith(prefix))
         return;
 
-//    const command = message.content.slice(prefix.length).toLowerCase();
-
-    const category = new Categories();
-    category.defineCategory(message);
+    categories.defineCategory(message, categories);
 };
 
 export default BeforeCommand;

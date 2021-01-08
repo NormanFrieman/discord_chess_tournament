@@ -1,7 +1,7 @@
-import { User, UserCommands } from "../../Classes/User";
+import { User, UserCommands } from "../../class/User";
 
-function AddUser(){
-
+function AddUser(hook: any){
+    console.log("Add User");
 }
 
 export default AddUser;

@@ -1,30 +1,32 @@
-import { Geral } from "./Commands";
+const { Webhook } = require("discord-webhook-node");
 
-interface Category{
+import { CommandClass } from "./Commands";
+import ErrorMessage from "../commands/ErrorMessage";
+
+export interface Category{
     name: string;
-    method: Geral;
+    method: CommandClass;
+    hook: any;
 }
-
 export class Categories{
-    categories: Category[];
+    public categories: Category[];
 
-    constructor(){
-        const defineCommand = new Geral;
-        const geral: Category = {
-            name: "geral",
-            method: defineCommand
-        }
-        this.categories = [geral];
+    constructor(categories: Category[]){
+        this.categories = categories;
     }
 
-    defineCategory(message: any){
-        const verify: any = this.categories.map((category: Category) => {
+    defineCategory(message: any, categories: Categories){
+        let condition: boolean = false;
+        categories.categories.map((category: Category) => {
             if(category.name == message.channel.name){
-                category.method.defineCommand(message);
-                return true;
+                category.method.defineCommand(message, category.hook);
+                condition = true;
             }
         });
 
-        verify[0] != undefined ? console.log("Correct channel") : console.error("Wrong channel");
+        const config = require("../../../config.json");
+        const hook = new Webhook(`${config.WEBHOOK_ERROR}`);
+        
+        condition ? console.log("Correct channel") : ErrorMessage(`Username: ${message.author.username}\nCommand: ${message.content}\nChannel invalidated :face_with_symbols_over_mouth:`, hook);
     }
 }

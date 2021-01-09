@@ -1,10 +1,17 @@
 export interface ResponseCommand{
     commandId: number;
 
+
+
     /**
-     * Props User Config Response
+     * Props Hook
      */
-    id?: number;
-    nickname?: string;
-    rating?: number;
+    hook?: any;
+
+
+
+    /**
+     * Props Generic Commands
+     */
+    info?: any[];
 }

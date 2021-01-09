@@ -8,10 +8,9 @@ import { Category, Categories } from "./class/Categories";
 import { ResponseCommand } from "./class/ResponseCommand";
 
 import Hello from "./commands/Hello";
-import AddUser from "./commands/AddUser";
-import LoadingUsers from "./commands/LoadingUsers";
+import configuringUsers from "./commands/configuringUsers";
 
-import setDatabase from "../database/index";
+import setupDatabase from "../database/setupDatabase";
 
 function InitDiscord(connection: any): void{
 /**
@@ -40,23 +39,37 @@ function InitDiscord(connection: any): void{
 /**
  * COMMANDS AVAILABLE ON THE 'user-commands' CHANNEL
  */
+    const loadingUsers: Command = {
+        name: "load",
+        method: (hook: any, message: any): ResponseCommand => {
+            return configuringUsers(hook, message, 2);
+        }
+    }
+    const deleteUser: Command = {
+        name: "delete",
+        method: (hook: any, message: any): ResponseCommand => {
+            return configuringUsers(hook, message, 3);
+        }
+    }
+    const commandsUser = new CommandClass([loadingUsers, deleteUser]);
+
+
+
+
+/**
+ * COMMANDS AVAILABLE ON THE 'user-commands' CHANNEL
+ */
     const addUser: Command = {
         name: "adduser",
         method: (hook: any, message: any): ResponseCommand => {
-            return AddUser(hook, message);
+            return configuringUsers(hook, message, 1);
         }
     }
-    const loadingUsers: Command = {
-        name: "loadusers",
-        method: (hook: any): ResponseCommand => {
-            return LoadingUsers(hook);
-        }
-    }
-    const commandsUser = new CommandClass([addUser, loadingUsers]);
+    const commandsDm = new CommandClass([addUser, loadingUsers]);
 
 
 
-    
+
 /**
  * CREATING THE CLASSES FOR EACH CHANNEL THAT WILL BE USED BY THE BOT
  */
@@ -70,7 +83,12 @@ function InitDiscord(connection: any): void{
         method: commandsUser,
         hook: new Webhook(`${config.WEBHOOK_USERCOMMANDS}`)
     };
-    const categories = new Categories([welcome, userCommands]);
+    const dm: Category = {
+        name: "dm",
+        method: commandsDm,
+        hook: new Webhook(`${config.WEBHOOK_USERCOMMANDS}`)
+    };
+    const categories = new Categories([welcome, userCommands, dm]);
 
 
 
@@ -82,8 +100,11 @@ function InitDiscord(connection: any): void{
     client.on("message", message => {
         response = BeforeCommand(message, categories);
         
+        /**
+         * IF NOT UNDEFINED, GO TO THE DATABASE SCRIPT
+         */
         if(response == undefined) return;
-        setDatabase(connection, response);
+        setupDatabase(connection, response);
     });
 
     console.log("Norman's Bot activated...");

@@ -1,6 +1,5 @@
 const { Webhook } = require("discord-webhook-node");
-
-import Discord from "discord.js";
+const Discord = require("discord.js");
 
 import BeforeCommand from "./middlewares/BeforeCommand";
 

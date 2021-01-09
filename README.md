@@ -9,7 +9,7 @@ This project consists of a component, the back-end. Backend is a Discord bot dev
 
 ## Developing Backend
 
-To get started with developing on backend, install all Node-related dependencies with a simple `yarn install`. After that, copy over `config-template.json` to `config.json` and adjust all required values (surrounded by `<<>>`).
+To get started with developing on backend, install all Node-related dependencies with a simple `yarn install` and `npm install`. After that, copy over `config-template.json` to `config.json` and adjust all required values (surrounded by `<<>>`).
 
 For developing, use `yarn dev` to compile typescript as you work.
 

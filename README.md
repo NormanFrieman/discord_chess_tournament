@@ -1,4 +1,4 @@
-<h1><img width=80 height=80 src="https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg"></td>
+<h1><img width=60 height=60 src="https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg"></td>
 Chess Tournament Bot</h1>
 
 This is the source code for the Discord bot that compromise <bold>Chess Tournament Bot</bold>.

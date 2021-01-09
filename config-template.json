@@ -1,6 +1,6 @@
 {
-    "BOT_TOKEN": "",
-    "WEBHOOK_WELCOME": "",
-    "WEBHOOK_USERCOMMANDS": "",
-    "WEBHOOK_ERROR": ""
+    "BOT_TOKEN": "<<>>",
+    "WEBHOOK_WELCOME": "<<>>",
+    "WEBHOOK_USERCOMMANDS": "<<>>",
+    "WEBHOOK_ERROR": "<<>>"
 }

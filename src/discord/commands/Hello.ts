@@ -1,6 +1,7 @@
-import { Message, Response } from "../../class/Messages";
+import { Message, Response } from "../class/Messages";
+import { ResponseCommand } from "../class/ResponseCommand"
 
-function Hello(hook: any): void{
+function Hello(hook: any): ResponseCommand{
 /*
     const message1: Message = {
         title: "Hello World",
@@ -58,6 +59,12 @@ function Hello(hook: any): void{
     hook.send(embed)
         .then(() => console.log("Sent message successfully"))
         .catch((err: Error) => console.error(err));
+    
+    const res: ResponseCommand = {
+        commandId: 0
+    }
+
+    return res;
 };
 
 export default Hello;

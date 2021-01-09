@@ -1,5 +1,7 @@
-import { Categories } from "./Categories";
-function BeforeCommand(message: any, categories: Categories): void{
+import { Categories } from "../class/Categories";
+import { ResponseCommand } from "../class/ResponseCommand";
+
+function BeforeCommand(message: any, categories: Categories): ResponseCommand{
     const prefix = "!";
     
     if(message.author.bot)
@@ -7,7 +9,7 @@ function BeforeCommand(message: any, categories: Categories): void{
     if(!message.content.startsWith(prefix))
         return;
 
-    categories.defineCategory(message, categories);
+    return categories.defineCategory(message, categories);
 };
 
 export default BeforeCommand;

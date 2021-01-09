@@ -1,13 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export class User{
+export class Matches{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    nickname: string;
+    whiteUser: string;
 
     @Column()
-    rating: number;
+    blackUser: string;
+
+    @Column()
+    result: string;
 }

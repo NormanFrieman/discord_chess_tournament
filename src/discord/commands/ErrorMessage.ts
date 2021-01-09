@@ -1,4 +1,4 @@
-import { Message, Response } from "../../class/Messages";
+import { Message, Response } from "../class/Messages";
 
 function ErrorMessage(text: string, hook: any): void{    
     const message: Message = {

@@ -5,6 +5,8 @@ This is the source code for the Discord bot that compromise <bold>Chess Tourname
 
 # Components
 
+<iframe src="https://discord.com/widget?id=794984761831063602&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
 This project consists of a component, the back-end. Backend is a Discord bot developed from [discord-webhook-node](https://www.npmjs.com/package/discord-webhook-node). The database was developed using [typeorm](https://typeorm.io/#/).
 
 ## Developing Backend

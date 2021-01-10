@@ -1,6 +1,17 @@
 {
-    "BOT_TOKEN": "<<>>",
-    "WEBHOOK_WELCOME": "<<>>",
-    "WEBHOOK_USERCOMMANDS": "<<>>",
-    "WEBHOOK_ERROR": "<<>>"
+    "BOT_TOKEN": "<<discord bot token>>",
+    
+    "webhook": {
+        "WEBHOOK_SAY_HELLO": "<<discord webhook channel say-hello>>",
+        "WEBHOOK_HOSTCOMMANDS": "<<discord webhook channel host-commands>>",
+        "WEBHOOK_ERROR": "<<discord webhook channel error404>>"
+    },
+
+    "createChannels": {
+        "INIT": "<<INIT category id>>",
+        "CONFIGURE_YOUR_ACCOUNT": "<<CONFIGURE YOUR ACCOUNT category id>>",
+        "TOURNAMENT": "<<TOURNAMENT category id>>",
+        "ENDGAME": "<<ENDGAME category id>>",
+        "DEVELOPER": "<<DEVELOPER category id>>"
+    }
 }

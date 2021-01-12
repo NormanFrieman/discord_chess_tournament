@@ -8,7 +8,6 @@ import { ResponseCommand } from "./class/ResponseCommand";
 
 import setupDatabase from "../database/setupDatabase";
 import setupCommands from "./setupCommands";
-import { Response } from "./class/Messages";
 
 function InitDiscord(connection: any): void{
 /**
@@ -23,26 +22,12 @@ function InitDiscord(connection: any): void{
 /**
  * START BOT
  */
-    console.log("passou aqui");
     client.on("message", (message: any) => {
         let condition = false;
         /**
-         * CREATES CHANNELS ON THE SERVER
-         */
-        console.log("create channels here");
-        message.guild.channels
-            .create("new-channel", {reason: "test"})
-            .then(console.log)
-            .catch(console.error);
-            
-
-
-
-        
-        /**
          * CREATE CLASSES: CATEGORIES AND COMMANDS
          */
-//        const categories: Categories = setupCommands();
+        const categories: Categories = setupCommands();
 
 
 
@@ -50,16 +35,16 @@ function InitDiscord(connection: any): void{
         /**
          * STARTS CHECKING COMMANDS
          */
-//        const response: ResponseCommand = BeforeCommand(message, categories);
+        const response: ResponseCommand = BeforeCommand(message, categories);
         
 
 
 
         /**
-         * IF NOT UNDEFINED, GO TO sDATABASE SCRIPT
+         * IF NOT UNDEFINED, GO TO DATABASE SCRIPT
          */
-//        if(response == undefined) return;
-//        setupDatabase(connection, response);
+        if(response == undefined) return;
+        setupDatabase(connection, response);
     });
 
     console.log("Norman's Bot activated...");

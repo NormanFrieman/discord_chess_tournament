@@ -12,10 +12,22 @@ function setupDatabase(connection: any, response: ResponseCommand): void{
      * 3 - DELETE USER
      * 4 - 
      */
-    if(response.commandId == 0) console.log("STAY QUIET");
-    if(response.commandId == 1) addUser(connection, response);
-    if(response.commandId == 2) loadingUsers(connection, response);
-    if(response.commandId == 3) deleteUser(connection, response);
+    const commands: Function[] = [
+        (): void => {
+            console.log("STAY QUIET");
+        },
+        (connection: any, response: ResponseCommand): void => {
+            addUser(connection, response);
+        },
+        (connection: any, response: ResponseCommand): void => {
+            loadingUsers(connection, response);
+        },
+        (connection: any, response: ResponseCommand): void => {
+            deleteUser(connection, response);
+        }
+    ]
+
+    commands[response.commandId](connection, response);
 }
 
 export default setupDatabase;

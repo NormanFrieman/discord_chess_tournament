@@ -1,4 +1,4 @@
-const { MessageBuilder } = require("discord-webhook-node");
+const Discord = require("discord.js");
 
 export interface Message{
     title?: string;
@@ -19,7 +19,7 @@ export class Response{
     }
 
     createMessage(): any{
-        const embed = new MessageBuilder();
+        const embed = new Discord.MessageEmbed();
 
         this.message.title ? embed.setTitle(`${this.message.title}`) : null;
         this.message.color ? embed.setColor(`${this.message.color}`) : null;

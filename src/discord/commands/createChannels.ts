@@ -1,61 +1,53 @@
-import { ResponseCommand } from "../class/ResponseCommand";
-
-function createServers(hook: any, message: any): ResponseCommand{
-    const config = require("../../../config.json");
-
-    
-
+function createServer(message: any): object[]{
     /**
-     * CREATES CHANNELS ON THE SERVER
+     * CREATES SERVER CATEGORIES AND CHANNELS
      */
-    const setups: string[] = [
-        `${config.createChannels.INIT}`,
-        `${config.createChannels.CONFIGURE_YOUR_ACCOUNT}`,
-        `${config.createChannels.TOURNAMENT}`,
-        `${config.createChannels.ENDGAME}`,
-        `${config.createChannels.DEVELOPER}`
-    ];
-    const names: any[] = [
+    const namesChannels: any[] = [
         ["welcome TEST", "como usar os comandos TEST", "links TEST"],
         ["say hello TEST", "host commands TEST"],
         ["start tournament TEST"],
         ["win TEST", "print results TEST"],
         ["error404 TEST"]
     ];
-
+    const namesCategories: string[] = [
+        "INÍCIO",
+        "CONFIGURE SUA CONTA",
+        "TORNEIO",
+        "FIM DE JOGO"
+    ];
     let channelsIds: object[] = [];
 
-    setups.map((setup: string, ind: number) => {
-        names[ind].map((name: string) => {
-            message.guild.channels
-                .create(name, {
-                    type: "text",
-                    parent: setup
-                })
-                .then((channel: any) => {
-                    console.log(`channel ${name} created!`);
-                    console.log(`channel id: ${channel}`);
-                    channelsIds.push({
-                        name: `${name}`,
-                        id: `${channel}`
-                    });
-                })
-                .catch(console.error);
-        })
-    })
-/*
-    message.guild.channels
-        .create("new-channel", {reason: "test"})
-        .then(console.log)
-        .catch(console.error);
-        console.log("create channels");*/
+    namesCategories.map((nameCategory: string, ind: number) => {
+        message.guild.channels
+            .create(`${nameCategory}`, {
+                type: "category"
+            })
+            .then((category: any) => {
+                console.log(`category ${nameCategory} created!`);
+                console.log(`category id: ${category}`);
 
-    const response: ResponseCommand = {
-        commandId: 0,
-        info: channelsIds
-    };
+                namesChannels[ind].map((nameChannel: string) => {
+                    message.guild.channels
+                        .create(nameChannel, {
+                            type: "text",
+                            parent: category
+                        })
+                        .then((channel: any) => {
+                            console.log(`channel ${nameChannel} created!`);
+                            console.log(`channel id: ${channel}`);
+                            
+                            channelsIds.push({
+                                name: `${nameChannel}`,
+                                id: `${channel}`
+                            });
+                        })
+                        .catch(console.error);
+                        })
+            })
+            .catch(console.error);
+    });    
     
-    return response;
+    return channelsIds;
 }
 
-export default createServers;
+export default createServer;

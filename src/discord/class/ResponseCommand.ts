@@ -14,4 +14,11 @@ export interface ResponseCommand{
      * Props Generic Commands
      */
     info?: any[];
+
+
+
+    /**
+     * Set ID Channels
+     */
+    channelsIds?: any[];
 }

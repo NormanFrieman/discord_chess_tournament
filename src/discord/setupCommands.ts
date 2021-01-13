@@ -7,6 +7,7 @@ import { ResponseCommand } from "./class/ResponseCommand";
 
 import Hello from "./commands/Hello";
 import createChannels from "./commands/createChannels";
+import deleteChannels from "./commands/deleteChannels";
 import configuringUsers from "./commands/configuringUsers";
 
 function setupCommands(): Categories{
@@ -71,20 +72,6 @@ function setupCommands(): Categories{
 
 
     /**
-    * COMMANDS AVAILABLE ON THE 'user-commands' CHANNEL
-    */
-    const startServer: Command = {
-        name: "startserver",
-        method: (hook: any, message: any): ResponseCommand => {
-            return createChannels(hook, message);
-        }
-    }
-    const commandsGeral = new CommandClass([startServer]);
-
-
-
-
-    /**
      * CREATING THE CLASSES FOR EACH CHANNEL THAT WILL BE USED BY THE BOT
      */
     const sayHello: Category = {
@@ -102,12 +89,7 @@ function setupCommands(): Categories{
         method: commandsDm,
         hook: new Webhook(`${config.webhook.WEBHOOK_HOSTCOMMANDS}`)
     };
-    const geral: Category = {
-        name: "geral",
-        method: commandsGeral,
-        hook: new Webhook(`${config.webhook.WEBHOOK_HOSTCOMMANDS}`)
-    };
-    const categories = new Categories([sayHello, userCommands, dm, geral]);
+    const categories = new Categories([sayHello, userCommands, dm]);
 
     return categories;
 }

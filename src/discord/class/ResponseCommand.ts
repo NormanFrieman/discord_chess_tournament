@@ -4,21 +4,7 @@ export interface ResponseCommand{
 
 
     /**
-     * Props Hook
-     */
-    channel?: string;
-
-
-
-    /**
      * Props Generic Commands
      */
     info?: any[];
-
-
-
-    /**
-     * Set ID Channels
-     */
-    channelsIds?: any[];
 }

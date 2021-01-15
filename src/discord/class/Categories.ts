@@ -22,7 +22,7 @@ export class Categories{
 
         categories.categories.map((category: Category) => {
             if(category.name == nameChannel){
-                response = category.method.defineCommand(message, category.name);
+                response = category.method.defineCommand(message);
                 condition = true;
             }
         });

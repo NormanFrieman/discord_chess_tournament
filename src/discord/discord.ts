@@ -19,7 +19,7 @@ function InitDiscord(connection: Connection){
  * CONFIGURE THE INITIAL VARIABLES
  */
     const config = require("../../config.json");
-    const client: Client = new Discord.Client();
+    const client: any = new Discord.Client();
 
 
 
@@ -74,7 +74,7 @@ function InitDiscord(connection: Connection){
 
 
 
-        console.log(response);
+
         setupDatabase(connection, message, response);
     });
 

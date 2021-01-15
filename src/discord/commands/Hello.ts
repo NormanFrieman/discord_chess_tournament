@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 import { NewMessage, Response } from "../class/Messages";
 import { ResponseCommand } from "../class/ResponseCommand"
 
-function Hello(channel: string, message: Message): ResponseCommand{    
+function Hello(message: Message): ResponseCommand{    
     const msg: NewMessage = {
         title: "HELLO!",
         description: "Welcome to the Chess Tournament.",
@@ -23,7 +23,7 @@ function Hello(channel: string, message: Message): ResponseCommand{
     const embed = response.createMessage();
 
     message.channel.send(embed)
-        .then(console.log)
+        .then(() => console.log("Message sent successfully"))
         .catch(console.error);
 
     return res;

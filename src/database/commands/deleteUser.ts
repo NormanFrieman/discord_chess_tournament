@@ -10,7 +10,7 @@ async function deleteUser(connection: any, message: Message, response: ResponseC
     
     const repository = connection.getRepository(User);
     const user = await repository.findOne({
-        nickname: response.info[1]
+        nickname: response.info[1],
     });
     
     if(user == undefined) return;

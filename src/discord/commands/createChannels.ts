@@ -16,7 +16,6 @@ function createServer(message: any): void{
         "FIM DE JOGO",
         "DEVELOPER"
     ];
-    let channelsIds: object[] = [];
 
     namesCategories.map((nameCategory: string, ind: number) => {
         message.guild.channels
@@ -36,11 +35,6 @@ function createServer(message: any): void{
                         .then((channel: any) => {
                             console.log(`channel ${nameChannel} created!`);
                             console.log(`channel id: ${channel}`);
-
-                            channelsIds.push({
-                                name: `${nameChannel}`,
-                                id: `${channel}`
-                            });
                         })
                         .catch(console.error);
                         })

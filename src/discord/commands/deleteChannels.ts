@@ -1,6 +1,6 @@
 import { ResponseCommand } from "../class/ResponseCommand";
 
-function deleteServer(channelsId: any, message: any): ResponseCommand{
+function deleteServer(message: any): ResponseCommand{
     const config = require("../../../config.json");
 
     

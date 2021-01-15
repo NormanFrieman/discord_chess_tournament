@@ -19,7 +19,7 @@ export class ErrorCondition{
         this.errorPackage = er;
     }
 
-    verify(message: any, channel: string){
-        this.errorPackage.condition ? console.log(this.errorPackage.msgSucess) : ErrorMessage(this.errorPackage.msgError, message, channel);
+    verify(message: any){
+        this.errorPackage.condition ? console.log(this.errorPackage.msgSucess) : ErrorMessage(this.errorPackage.msgError, message);
     }
 }

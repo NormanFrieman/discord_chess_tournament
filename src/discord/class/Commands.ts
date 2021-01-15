@@ -13,7 +13,7 @@ export class CommandClass{
         this.commands = commands;
     }
 
-    defineCommand(message: any, channel: string): ResponseCommand{
+    defineCommand(message: any): ResponseCommand{
         let condition: boolean = false;
         let response: ResponseCommand;
         const prefix: string = "!";
@@ -21,13 +21,13 @@ export class CommandClass{
         
         this.commands.map((command: Command) => {
             if(command.name == receivedCommand[0]){
-                response = command.method(channel, message);
+                response = command.method(message);
                 condition = true;
             }
         });
         
         const errorCond = new ErrorCondition(condition);
-        errorCond.verify(message, channel);
+        errorCond.verify(message);
 
         return response;
     }

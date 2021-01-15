@@ -16,8 +16,8 @@ function setupCommands(): Categories{
     */
     const hello: Command = {
         name: "hello",
-        method: (channel: string, message: any): ResponseCommand => {
-            return Hello(channel, message);
+        method: (message: any): ResponseCommand => {
+            return Hello(message);
         }
     }
     const commandsSayHello = new CommandClass([hello]);
@@ -32,14 +32,14 @@ function setupCommands(): Categories{
     */
     const loadingUsers: Command = {
         name: "load",
-        method: (channel: string, message: any): ResponseCommand => {
-            return configuringUsers(channel, message, 2);
+        method: (message: any): ResponseCommand => {
+            return configuringUsers(message, 2);
         }
     }
     const deleteUser: Command = {
         name: "delete",
-        method: (channel: string, message: any): ResponseCommand => {
-            return configuringUsers(channel, message, 3);
+        method: (message: any): ResponseCommand => {
+            return configuringUsers(message, 3);
         }
     }
     const hostCommands = new CommandClass([loadingUsers, deleteUser]);
@@ -52,8 +52,8 @@ function setupCommands(): Categories{
     */
     const addUser: Command = {
         name: "adduser",
-        method: (channel: string, message: any): ResponseCommand => {
-            return configuringUsers(channel, message, 1);
+        method: (message: any): ResponseCommand => {
+            return configuringUsers(message, 1);
         }
     }
     const commandsDm = new CommandClass([addUser, loadingUsers]);

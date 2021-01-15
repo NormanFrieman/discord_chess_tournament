@@ -1,20 +1,20 @@
-import { Message, Response } from "../class/Messages";
+import { Message } from "discord.js";
 
-function ErrorMessage(text: string, hook: any): void{    
-    const message: Message = {
+import { NewMessage, Response } from "../class/Messages";
+
+function ErrorMessage(text: string, message: Message): void{    
+    const msg: NewMessage = {
         title: "ERROR!",
         description: `${text}`,
         color: "#E93B2F"
-    }
+    };
 
-    const response = new Response(message);
+    const response = new Response(msg);
     const embed = response.createMessage();
 
-    console.log(`*** ${text} ***`);
+    message.channel.send(embed);
 
-    hook.send(embed)
-        .then(() => console.log("Sent message successfully"))
-        .catch((err: Error) => console.error(err));
+    console.log(`*** ${text} ***`);
 };
 
 export default ErrorMessage;

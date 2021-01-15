@@ -1,9 +1,11 @@
+import { Message } from "discord.js";
+
 import { ResponseCommand } from "../../discord/class/ResponseCommand";
-import { Message, Response } from "../../discord/class/Messages";
+import { NewMessage, Response } from "../../discord/class/Messages";
 
 import { User } from "../../entity/User";
 
-async function deleteUser(connection: any, response: ResponseCommand){
+async function deleteUser(connection: any, message: Message, response: ResponseCommand){
     console.log("Deleting user from the database...");
     
     const repository = connection.getRepository(User);
@@ -15,7 +17,7 @@ async function deleteUser(connection: any, response: ResponseCommand){
 
     await repository.remove(user);
     
-    const msgDelete: Message = {
+    const msgDelete: NewMessage = {
         title: "User deleted",
         field: [{
             title: `${user.nickname}`,
@@ -29,7 +31,7 @@ async function deleteUser(connection: any, response: ResponseCommand){
     const deleteDiscord = new Response(msgDelete);
     const embed = deleteDiscord.createMessage();
 
-    response.hook.send(embed)
+    message.channel.send(embed)
         .then(() => console.log("Sent message successfully"))
         .catch((err: Error) => console.error(err));
 }

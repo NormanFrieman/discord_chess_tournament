@@ -1,11 +1,15 @@
+import { Message } from "discord.js";
+
 import { ResponseCommand } from "../../discord/class/ResponseCommand";
-import { Message, Response } from "../../discord/class/Messages";
+import { NewMessage, Response } from "../../discord/class/Messages";
 
 import { User } from "../../entity/User";
 
-async function addUser(connection: any, response: ResponseCommand){
+async function addUser(connection: any, message: Message, response: ResponseCommand){
     console.log("Inserting a new user into the database...");
-    
+
+    if(response.info == undefined) return;
+
     const user = new User();
 
     user.nickname = response.info[1];
@@ -13,7 +17,7 @@ async function addUser(connection: any, response: ResponseCommand){
     
     console.log(`\nNickname: ${response.info[1]}\nRating: ${response.info[2]}\n`);
 
-    const msg: Message = {
+    const msg: NewMessage = {
         title: "New User!",
         field: [{
             title: `${response.info[1]}`,
@@ -27,7 +31,7 @@ async function addUser(connection: any, response: ResponseCommand){
     const msgDiscord = new Response(msg);
     const embed = msgDiscord.createMessage();
 
-    response.hook.send(embed)
+    message.channel.send(embed)
         .then(() => console.log("Sent message successfully"))
         .catch((err: Error) => console.error(err));
 

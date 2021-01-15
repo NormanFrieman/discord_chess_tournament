@@ -1,19 +1,20 @@
-function createServer(message: any): object[]{
+function createServer(message: any): void{
     /**
      * CREATES SERVER CATEGORIES AND CHANNELS
      */
     const namesChannels: any[] = [
-        ["welcome TEST", "como usar os comandos TEST", "links TEST"],
-        ["say hello TEST", "host commands TEST"],
-        ["start tournament TEST"],
-        ["win TEST", "print results TEST"],
-        ["error404 TEST"]
+        ["welcome", "como-usar-os-comandos", "links"],
+        ["say-hello", "host-commands"],
+        ["start-tournament"],
+        ["win", "print-results"],
+        ["error404", "dont-touch"]
     ];
     const namesCategories: string[] = [
         "INÍCIO",
         "CONFIGURE SUA CONTA",
         "TORNEIO",
-        "FIM DE JOGO"
+        "FIM DE JOGO",
+        "DEVELOPER"
     ];
     let channelsIds: object[] = [];
 
@@ -35,7 +36,7 @@ function createServer(message: any): object[]{
                         .then((channel: any) => {
                             console.log(`channel ${nameChannel} created!`);
                             console.log(`channel id: ${channel}`);
-                            
+
                             channelsIds.push({
                                 name: `${nameChannel}`,
                                 id: `${channel}`
@@ -45,9 +46,7 @@ function createServer(message: any): object[]{
                         })
             })
             .catch(console.error);
-    });    
-    
-    return channelsIds;
+    });
 }
 
 export default createServer;

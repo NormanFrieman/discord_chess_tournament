@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-export interface Message{
+export interface NewMessage{
     title?: string;
     field?: {
         title: string;
@@ -12,14 +12,14 @@ export interface Message{
 }
 
 export class Response{
-    public message: Message;
+    public message: NewMessage;
 
-    constructor(message: Message){
+    constructor(message: NewMessage){
         this.message = message;
     }
 
     createMessage(): any{
-        const embed = new Discord.MessageEmbed();
+        let embed = new Discord.MessageEmbed();
 
         this.message.title ? embed.setTitle(`${this.message.title}`) : null;
         this.message.color ? embed.setColor(`${this.message.color}`) : null;

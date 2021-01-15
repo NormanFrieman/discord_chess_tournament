@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { createConnection, Connection } from "typeorm";
 import InitDiscord from "./discord/discord";
 
-createConnection().then(async connection => {
+createConnection().then((connection: Connection) => {
     InitDiscord(connection);
 }).catch(error => console.log(error));

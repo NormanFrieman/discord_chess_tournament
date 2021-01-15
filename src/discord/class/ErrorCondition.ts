@@ -4,24 +4,22 @@ interface ErrorProps{
     msgSucess: string;
     msgError: string;
     condition: boolean;
-    hook: any;
 }
 
 export class ErrorCondition{
     public errorPackage: ErrorProps;
 
-    constructor(num: boolean, hook: any){
+    constructor(num: boolean){
         const er: ErrorProps = {
             msgSucess: "Correct command in this channel",
             msgError: "Wrong command in this channel :face_with_symbols_over_mouth:",
-            condition: num,
-            hook: hook
+            condition: num
         }
         
         this.errorPackage = er;
     }
 
-    verify(){
-        this.errorPackage.condition ? console.log(this.errorPackage.msgSucess) : ErrorMessage(this.errorPackage.msgError, this.errorPackage.hook);
+    verify(message: any, channel: string){
+        this.errorPackage.condition ? console.log(this.errorPackage.msgSucess) : ErrorMessage(this.errorPackage.msgError, message, channel);
     }
 }

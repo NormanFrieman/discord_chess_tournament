@@ -1,24 +1,14 @@
-const { Webhook } = require("discord-webhook-node");
-const Discord = require("discord.js");
+//import { Message } from "discord.js";
 
 import { Command, CommandClass } from "./class/Commands";
 import { Category, Categories } from "./class/Categories";
 import { ResponseCommand } from "./class/ResponseCommand";
 
 import Hello from "./commands/Hello";
-import createChannels from "./commands/createChannels";
-import deleteChannels from "./commands/deleteChannels";
+//import deleteChannels from "./commands/deleteChannels";
 import configuringUsers from "./commands/configuringUsers";
 
 function setupCommands(): Categories{
-    /**
-     * CONFIGURE THE INITIAL VARIABLES
-     */
-    const config = require("../../config.json");
-
-
-
-
     /**
     * COMMANDS AVAILABLE ON THE 'say-hello' CHANNEL
     * 
@@ -26,8 +16,8 @@ function setupCommands(): Categories{
     */
     const hello: Command = {
         name: "hello",
-        method: (hook: any): ResponseCommand => {
-            return Hello(hook);
+        method: (channel: string, message: any): ResponseCommand => {
+            return Hello(channel, message);
         }
     }
     const commandsSayHello = new CommandClass([hello]);
@@ -42,14 +32,14 @@ function setupCommands(): Categories{
     */
     const loadingUsers: Command = {
         name: "load",
-        method: (hook: any, message: any): ResponseCommand => {
-            return configuringUsers(hook, message, 2);
+        method: (channel: string, message: any): ResponseCommand => {
+            return configuringUsers(channel, message, 2);
         }
     }
     const deleteUser: Command = {
         name: "delete",
-        method: (hook: any, message: any): ResponseCommand => {
-            return configuringUsers(hook, message, 3);
+        method: (channel: string, message: any): ResponseCommand => {
+            return configuringUsers(channel, message, 3);
         }
     }
     const hostCommands = new CommandClass([loadingUsers, deleteUser]);
@@ -62,8 +52,8 @@ function setupCommands(): Categories{
     */
     const addUser: Command = {
         name: "adduser",
-        method: (hook: any, message: any): ResponseCommand => {
-            return configuringUsers(hook, message, 1);
+        method: (channel: string, message: any): ResponseCommand => {
+            return configuringUsers(channel, message, 1);
         }
     }
     const commandsDm = new CommandClass([addUser, loadingUsers]);
@@ -74,23 +64,29 @@ function setupCommands(): Categories{
     /**
      * CREATING THE CLASSES FOR EACH CHANNEL THAT WILL BE USED BY THE BOT
      */
-    const sayHello: Category = {
-        name: "say-hello",
-        method: commandsSayHello,
-        hook: new Webhook(`${config.webhook.WEBHOOK_SAY_HELLO}`)
-    };
-    const userCommands: Category = {
-        name: "host-commands",
-        method: hostCommands,
-        hook: new Webhook(`${config.webhook.WEBHOOK_HOSTCOMMANDS}`)
-    };
-    const dm: Category = {
-        name: "dm",
-        method: commandsDm,
-        hook: new Webhook(`${config.webhook.WEBHOOK_HOSTCOMMANDS}`)
-    };
-    const categories = new Categories([sayHello, userCommands, dm]);
+    const namesCategories: string[] = [
+        "say-hello",
+        "host-commands",
+        "dm"
+    ];
+    const methods: CommandClass[] = [
+        commandsSayHello,
+        hostCommands,
+        commandsDm
+    ];
+    let categoriesList: Category[] = [];
 
+    namesCategories.map((nameCategory: string, num: number) => {
+        const newCategory: Category = {
+            name: nameCategory,
+            method: methods[num]
+        };
+        
+        categoriesList.push(newCategory);
+    })
+    
+    const categories = new Categories(categoriesList);
+    
     return categories;
 }
 

@@ -1,10 +1,12 @@
+import { Message } from "discord.js";
+
 import { ResponseCommand } from "../discord/class/ResponseCommand";
 
 import addUser from "./commands/addUser";
 import loadingUsers from "./commands/loadingUsers";
 import deleteUser from "./commands/deleteUser";
 
-function setupDatabase(connection: any, response: ResponseCommand): void{
+function setupDatabase(connection: any, message: Message, response: ResponseCommand): void{
     /**
      * 0 - STAY QUIET
      * 1 - ADD USER
@@ -16,18 +18,18 @@ function setupDatabase(connection: any, response: ResponseCommand): void{
         (): void => {
             console.log("STAY QUIET");
         },
-        (connection: any, response: ResponseCommand): void => {
-            addUser(connection, response);
+        (connection: any, message: Message, response: ResponseCommand): void => {
+            addUser(connection, message, response);
         },
-        (connection: any, response: ResponseCommand): void => {
-            loadingUsers(connection, response);
+        (connection: any, message: Message, response: ResponseCommand): void => {
+            loadingUsers(connection, message, response);
         },
-        (connection: any, response: ResponseCommand): void => {
-            deleteUser(connection, response);
+        (connection: any, message: Message, response: ResponseCommand): void => {
+            deleteUser(connection, message, response);
         }
     ]
 
-    commands[response.commandId](connection, response);
+    commands[response.commandId](connection, message, response);
 }
 
 export default setupDatabase;

@@ -1,7 +1,9 @@
+import { Message, Client } from "discord.js";
+
 import { Categories } from "../class/Categories";
 import { ResponseCommand } from "../class/ResponseCommand";
 
-function BeforeCommand(message: any, categories: Categories): ResponseCommand{
+function BeforeCommand(message: Message, categories: Categories): ResponseCommand{
     const prefix = "!";
     
     if(message.author.bot)

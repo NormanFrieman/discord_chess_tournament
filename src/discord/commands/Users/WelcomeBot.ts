@@ -1,6 +1,6 @@
 import { User } from "discord.js";
 
-import { NewMessage, Response } from "../class/Messages";
+import { NewMessage, Response } from "../../class/Messages";
 
 interface Msg{
     title: string,

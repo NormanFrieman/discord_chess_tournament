@@ -13,7 +13,7 @@ import setupDatabase from "../database/setupDatabase";
 
 import setupCommands from "./setupCommands";
 
-import Welcome from "./commands/WelcomeBot";
+import Welcome from "./commands/Users/WelcomeBot";
 
 function ServerInit(connection: Connection){
 /**

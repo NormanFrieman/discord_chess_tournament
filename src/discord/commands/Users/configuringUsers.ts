@@ -1,4 +1,4 @@
-import { ResponseCommand } from "../class/ResponseCommand"
+import { ResponseCommand } from "../../class/ResponseCommand"
 
 function configuringUsers(message: any, num: number): ResponseCommand{
     const prefix = "!";
@@ -10,7 +10,7 @@ function configuringUsers(message: any, num: number): ResponseCommand{
             return command;
         })
     }
-    console.log(response);
+    
     return response; 
 }
 

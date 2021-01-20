@@ -2,9 +2,9 @@ import { Command, CommandClass } from "./class/Commands";
 
 import { ResponseCommand } from "./class/ResponseCommand";
 
-import Hello from "./commands/Hello";
+import Hello from "./commands/Users/Hello";
 
-import configuringUsers from "./commands/configuringUsers";
+import configuringUsers from "./commands/Users/configuringUsers";
 
 function setupCommands(): CommandClass{
     /**

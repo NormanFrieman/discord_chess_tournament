@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 
-import { NewMessage, Response } from "../class/Messages";
-import { ResponseCommand } from "../class/ResponseCommand"
+import { NewMessage, Response } from "../../class/Messages";
+import { ResponseCommand } from "../../class/ResponseCommand"
 
 function Hello(message: Message): ResponseCommand{    
     const msg: NewMessage = {

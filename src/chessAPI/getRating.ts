@@ -5,7 +5,11 @@ async function getRating(nickname: string): Promise<number>{
     
     try{
         const response = await axios.get(url);
-        const rating = response.data.chess_daily.last.rating;
+        
+        if(response.data.chess_rapid == undefined)
+            return undefined;
+        
+        const rating = response.data.chess_rapid.last.rating;
         
         return rating;
     }catch(err){

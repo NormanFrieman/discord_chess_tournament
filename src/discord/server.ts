@@ -13,6 +13,8 @@ import setupDatabase from "../database/setupDatabase";
 
 import setupCommands from "./setupCommands";
 
+import Welcome from "./commands/WelcomeBot";
+
 function ServerInit(connection: Connection){
 /**
  * CONFIGURE THE INITIAL VARIABLES
@@ -27,6 +29,17 @@ function ServerInit(connection: Connection){
  * START BOT
  */
     client.on("message", (message: Message) => {
+        /**
+         * SEND MESSAGE TO NEW USER
+         */
+        if(message.type == "GUILD_MEMBER_JOIN"){
+            Welcome(message.author);
+            return;
+        }
+
+
+
+
         /**
          * CREATE CLASSES: COMMANDS
          */

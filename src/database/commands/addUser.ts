@@ -5,6 +5,8 @@ import getRating from "../../chessAPI/getRating";
 
 import { User } from "../../entity/User";
 
+import ErrorMessage from "../../discord/commands/ErrorMessage";
+
 async function addUser(connection: any, message: any, response: ResponseCommand): Promise<void>{
     console.log("Inserting a new user into the database...");
     
@@ -14,9 +16,12 @@ async function addUser(connection: any, message: any, response: ResponseCommand)
 
     const rating: number = await getRating(response.info[1]);
     
-    if(rating == undefined)
-        return;
+    if(rating == undefined){
+        ErrorMessage("Something went wrong while getting your information from the `chess.com` platform" ,message);
 
+        return;
+    }
+    
     const userDisc = message.client.users.cache.find(ch => ch.bot == false);
     
     user.id = userDisc.id;

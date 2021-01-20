@@ -9,5 +9,8 @@ export class User{
     nickname: string;
 
     @Column()
+    userChess: string;
+
+    @Column()
     rating: number;
 }

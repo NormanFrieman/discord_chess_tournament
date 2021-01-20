@@ -7,6 +7,8 @@ export interface NewMessage{
         text: string;
         inline: boolean;
     }[];
+    url?: string;
+    thumbnail?: string;
     color?: string;
     description?: string;
 }
@@ -22,6 +24,8 @@ export class Response{
         let embed = new Discord.MessageEmbed();
 
         this.message.title ? embed.setTitle(`${this.message.title}`) : null;
+        this.message.url ? embed.setURL(`${this.message.url}`) : null;
+        this.message.thumbnail ? embed.setThumbnail(`${this.message.thumbnail}`) : null;
         this.message.color ? embed.setColor(`${this.message.color}`) : null;
         this.message.description ? embed.setDescription(`${this.message.description}`) : null;
         

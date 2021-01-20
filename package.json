@@ -10,11 +10,12 @@
    },
    "devDependencies": {
       "@types/node": "^8.0.29",
+      "ts-node": "3.3.0",
       "ts-node-dev": "^1.1.1",
-      "typescript": "3.3.3333",
-      "ts-node": "3.3.0"
+      "typescript": "3.3.3333"
    },
    "dependencies": {
+      "axios": "^0.21.1",
       "discord-webhook-node": "^1.1.8",
       "discord.js": "^12.5.1",
       "mysql": "^2.14.1",

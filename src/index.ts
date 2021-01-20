@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { createConnection, Connection } from "typeorm";
-import InitDiscord from "./discord/discord";
+import ServerInit from "./discord/server";
 
 createConnection().then((connection: Connection) => {
-    InitDiscord(connection);
+    ServerInit(connection);
 }).catch(error => console.log(error));

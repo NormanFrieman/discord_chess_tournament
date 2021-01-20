@@ -6,6 +6,7 @@ export interface Command{
     name: string;
     method: Function;
 }
+
 export class CommandClass{
     public commands: Command[];
     
@@ -16,8 +17,8 @@ export class CommandClass{
     defineCommand(message: any): ResponseCommand{
         let condition: boolean = false;
         let response: ResponseCommand;
-        const prefix: string = "!";
-        const receivedCommand: string[] = message.content.slice(prefix.length).toLowerCase().split(" ");
+        
+        const receivedCommand: string[] = message.content.slice(1).toLowerCase().split(" ");
         
         this.commands.map((command: Command) => {
             if(command.name == receivedCommand[0]){

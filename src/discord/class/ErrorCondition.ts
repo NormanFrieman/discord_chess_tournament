@@ -12,7 +12,7 @@ export class ErrorCondition{
     constructor(num: boolean){
         const er: ErrorProps = {
             msgSucess: "Correct command in this channel",
-            msgError: "Wrong command in this channel :face_with_symbols_over_mouth:",
+            msgError: "Wrong command :face_with_symbols_over_mouth:",
             condition: num
         }
         

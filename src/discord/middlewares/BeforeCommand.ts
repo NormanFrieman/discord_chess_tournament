@@ -1,9 +1,10 @@
-import { Message, Client } from "discord.js";
+import { Message } from "discord.js";
 
-import { Categories } from "../class/Categories";
+import { CommandClass } from "../class/Commands";
+
 import { ResponseCommand } from "../class/ResponseCommand";
 
-function BeforeCommand(message: Message, categories: Categories): ResponseCommand{
+function BeforeCommand(message: Message, commands: CommandClass): ResponseCommand{
     const prefix = "!";
     
     if(message.author.bot)
@@ -11,7 +12,7 @@ function BeforeCommand(message: Message, categories: Categories): ResponseComman
     if(!message.content.startsWith(prefix))
         return;
 
-    return categories.defineCategory(message, categories);
+    return commands.defineCommand(message);
 };
 
 export default BeforeCommand;

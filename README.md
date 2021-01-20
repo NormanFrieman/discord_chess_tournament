@@ -3,7 +3,7 @@ Chess Tournament Bot</h1>
 
 This is the source code for the Discord bot that compromise <bold>Chess Tournament Bot</bold>.
 
-* [Don't click on that!](https://discord.com/api/oauth2/authorize?client_id=795049493636317204&permissions=8&scope=bot)
+* [Don't click!](https://discord.com/api/oauth2/authorize?client_id=795049493636317204&permissions=8&scope=bot)
 
 # Components
 

@@ -14,6 +14,7 @@ import { WrongCommand, ServerError } from "../errors";
 import { Command } from "../class/Command";
 
 import { serverError } from "../helper/response-helper";
+import commands from "../controllers";
 
 
 const anyCommand = (command: string, message: Message): StatusCommand => {
@@ -59,4 +60,12 @@ describe("CommandRoute, Interpret and Verify test", () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual("Correct command");
     });
+
+    test("[Interpret] Should return correct array", () => {
+        const command = "!command any1 any2 any3";
+
+        const response = Interpret(command);
+
+        expect(response).toEqual(["command", "any1", "any2", "any3"]);
+    })
 });

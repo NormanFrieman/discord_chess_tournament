@@ -1,5 +1,7 @@
 import { Message } from "discord.js";
 
+
+
 import { CommandRoute } from "./router";
 
 import Interpret from "./interpret";
@@ -7,15 +9,14 @@ import Interpret from "./interpret";
 import Verify from "./verify";
 
 
+
 import { StatusCommand } from "../protocols";
 
-import { WrongCommand, ServerError } from "../errors";
+import { WrongCommand, ServerError, Misinterpretation } from "../errors";
 
 import { Command } from "../class/Command";
 
 import { serverError } from "../helper/response-helper";
-import commands from "../controllers";
-
 
 const anyCommand = (command: string, message: Message): StatusCommand => {
     const anyCommand = new Command("any_command");
@@ -67,5 +68,32 @@ describe("CommandRoute, Interpret and Verify test", () => {
         const response = Interpret(command);
 
         expect(response).toEqual(["command", "any1", "any2", "any3"]);
-    })
+    });
+
+    test("[Verify] Should return 400 if author bot", () => {
+        const message: any = {
+            author: {
+                bot: true
+            }
+        };
+
+        const response = Verify(message);
+
+        expect(response.status).toBe(400);
+        expect(response.body).toEqual(new Misinterpretation("the author of the message is a bot"));
+    });
+
+    test("[Verify] Should return 400 if wrong prefix", () => {
+        const message: any = {
+            author: {
+                bot: false
+            },
+            content: "?command"
+        };
+
+        const response = Verify(message);
+
+        expect(response.status).toBe(400);
+        expect(response.body).toEqual(new Misinterpretation("wrong prefix"));
+    });
 });

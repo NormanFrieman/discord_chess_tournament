@@ -1,6 +1,8 @@
 import { WrongCommand } from "../errors";
 
-import { wrongCommand } from "../helper/response-helper";
+import { correctCommand, wrongCommand } from "../helper/response-helper";
+
+import { StatusCommand } from "../protocols";
 
 export class Command{
     name: string;
@@ -9,8 +11,10 @@ export class Command{
         this.name = name;
     };
 
-    handle(command: string){
+    verify(command: string): StatusCommand{
         if(this.name !== command)
             return wrongCommand(new WrongCommand(command));
+        
+        return correctCommand();
     };
 };

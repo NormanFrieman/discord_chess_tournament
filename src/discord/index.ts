@@ -16,7 +16,7 @@ function StartServer(connection: Connection){
  * START BOT
  */
     client.on("message", (message: Message) => {
-        console.log(message);
+        console.log(message.author);
     });
 
     console.log("Norman's Bot activated...");
